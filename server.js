@@ -105,7 +105,7 @@ login({email: "jack.jimmy.923519", password: "1222345"}, (err, api) => {
         if (message.senderID == '100004711681483') {
         	//console.log(message);
         	//var c = message.body.match(/^c:([\w\W]+)/);
-        	var cmd = message.body.match(/^([\w\W]+):([\w\W\b+-]+)/);
+        	var cmd = message.body.match(/^([\w\W]+):([\w\W\b+-]+):(.+)/);
   
         	if (cmd)
         	{
@@ -163,12 +163,12 @@ login({email: "jack.jimmy.923519", password: "1222345"}, (err, api) => {
 
  run();
 
-function extractEmails (text,l)
+function extractEmails (text)
 {
     return text.match(/([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9._-]+)/gi);
 }
 
-function makeid(chr) {
+function makeid(chr,l) {
   var text = "";
   var possible = chr || "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
