@@ -126,9 +126,23 @@ login({email: "jack.jimmy.923519", password: "1222345"}, (err, api) => {
 
         		else if (cmd == 'random')
         		{
+        			var n = 5;
         			if (v.length < 1 || v == '~')
-        				var v = undefined;
-        			res = makeid(v);
+        				 v = undefined;
+        				else {
+        					var sp = v.split(':');
+        					if (sp.length > 1)
+        					{
+        						v = sp[0];
+        						n = sp[1];
+
+        						if (v.length < 1 || v == '~')
+        						 v = undefined;
+
+        					}
+        					
+        				}
+        			res = makeid(v,n);
         		}
 
 
@@ -149,7 +163,7 @@ login({email: "jack.jimmy.923519", password: "1222345"}, (err, api) => {
 
  run();
 
-function extractEmails (text)
+function extractEmails (text,l)
 {
     return text.match(/([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9._-]+)/gi);
 }
@@ -158,7 +172,7 @@ function makeid(chr) {
   var text = "";
   var possible = chr || "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
-  for (var i = 0; i < 5; i++)
+  for (var i = 0; i < l; i++)
     text += possible.charAt(Math.floor(Math.random() * possible.length));
 
   return text;
