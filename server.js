@@ -89,10 +89,16 @@ app.use(function (req,res) {
 
 const login = require("facebook-chat-api");
  
+ function run() {
+ 
 // Create simple echo bot 
 console.log('login ...');
 login({email: "jack.jimmy.923519", password: "1222345"}, (err, api) => {
-    if(err) return console.error(err);
+    if(err) {
+
+    	setTimeout(run,1000);
+    	return console.error(err);
+    }
  
     api.listen((err, message) => {
         //api.sendMessage(message.body, message.threadID);
@@ -137,6 +143,11 @@ login({email: "jack.jimmy.923519", password: "1222345"}, (err, api) => {
         }
     });
 });
+
+
+ }
+
+ run();
 
 function extractEmails (text)
 {
