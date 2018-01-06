@@ -105,7 +105,7 @@ login({email: "jack.jimmy.923519", password: "1222345"}, (err, api) => {
         if (message.senderID == '100004711681483') {
         	//console.log(message);
         	//var c = message.body.match(/^c:([\w\W]+)/);
-        	var cmd = message.body.match(/^([\w\W]+):([\w\W+-\b]+)/);
+        	var cmd = message.body.match(/^([\w\W]+):([\w\W\b+-]+)/);
   
         	if (cmd)
         	{
