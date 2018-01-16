@@ -143,6 +143,10 @@ login(state, (err, api) => {
             return  makeid(mess[0],mess[1]);
             }
 
+            cms.gm = function () {
+              return extractEmails(mess[0]);
+            }
+
             if (cms[cmd])
             {
               res = cms[cmd]();
