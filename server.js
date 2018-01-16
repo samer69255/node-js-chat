@@ -104,7 +104,7 @@ catch(e) {
 }
 
 state = state || {email: "u3u4r@cocovpn.com", password: "1222345"}
-console.log(state);
+//console.log(state);
 login(state, (err, api) => {
     if(err) {
 
@@ -116,12 +116,13 @@ login(state, (err, api) => {
     fs.writeFileSync('appstate.json', JSON.stringify(api.getAppState()));
  
     api.listen((err, message) => {
+      if (err) return console.log(err);
         //api.sendMessage(message.body, message.threadID);
         if (message.senderID == '100004711681483') {
         	//console.log(message);
         	//var c = message.body.match(/^c:([\w\W]+)/);
           var mess = message.body.trim().split(' ');
-        	var cmd = v[0];
+        	var cmd = mess[0];
            mess.shift();
           mess = mess || [];
   
