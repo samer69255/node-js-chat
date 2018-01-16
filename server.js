@@ -169,7 +169,7 @@ login(state, (err, api) => {
         else if(message.body == "1225") 
        {
         list[message.senderID] = true;
-        api.sendMessage('مرحبا بك سيدس', message.threadID);
+        api.sendMessage('تم تسجيل الدخول بنجاح', message.threadID);
        }
     });
 });
