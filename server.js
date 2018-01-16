@@ -100,11 +100,11 @@ var state = fs.readFileSync('appstate.json', 'utf8');
 
 }
 catch(e) {
-  state = {};
+  state = null;
 }
 
 state = state || {email: "u3u4r@cocovpn.com", password: "1222345"}
-
+console.log(state);
 login(state, (err, api) => {
     if(err) {
 
