@@ -107,7 +107,7 @@ login({email: "jack.jimmy.923519", password: "1222345"}, (err, api) => {
         	//var c = message.body.match(/^c:([\w\W]+)/);
           var mess = message.body.trim().split(' ');
         	var cmd = v[0];
-          var mess.shift();
+           mess.shift();
           mess = mess || [];
   
         	if (cmd)
