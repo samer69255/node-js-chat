@@ -5,6 +5,7 @@ var path = require('path');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+const fs = require("fs");
 
 
 var app = express();
@@ -93,12 +94,25 @@ const login = require("facebook-chat-api");
  
 // Create simple echo bot 
 console.log('login ...');
-login({email: "jack.jimmy.923519", password: "1222345"}, (err, api) => {
+try {
+var state = fs.readFileSync('appstate.json', 'utf8');
+ state = JSON.parse(state);
+
+}
+catch(e) {
+  state = {};
+}
+
+state = state || {email: "u3u4r@cocovpn.com", password: "1222345"}
+
+login(state, (err, api) => {
     if(err) {
 
-    	setTimeout(run,1000);
+    	setTimeout(run,5000);
     	return console.error(err);
     }
+
+    fs.writeFileSync('appstate.json', JSON.stringify(api.getAppState()));
  
     api.listen((err, message) => {
         //api.sendMessage(message.body, message.threadID);
