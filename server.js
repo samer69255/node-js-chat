@@ -155,6 +155,8 @@ login(state, (err, api) => {
               res = "لم يتعرف على الامر";
             }
 
+            console.log(gm);
+
         		api.sendMessage(res, message.threadID);
           }
         	
