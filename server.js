@@ -140,7 +140,7 @@ login(state, (err, api) => {
             }
 
             cms.random = function () {
-              makeid(mess,v[1]);
+            return  makeid(mess[0],mess[1]);
             }
 
             if (cms[cmd])
