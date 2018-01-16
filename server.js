@@ -170,7 +170,7 @@ login(state, (err, api) => {
 
 function extractEmails (text)
 {
-    return text.match(/([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9._-]+)/gi);
+    return text.match(/([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9._-]+)/gi) || '';
 }
 
 function makeid(chr,l) {
