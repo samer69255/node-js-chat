@@ -96,7 +96,7 @@ const login = require("facebook-chat-api");
 console.log('login ...');
 try {
 var state = fs.readFileSync('appstate.json', 'utf8');
- state = JSON.parse(state);
+ state = {appState:JSON.parse(state)}
 
 }
 catch(e) {
@@ -111,7 +111,7 @@ login(state, (err, api) => {
     	setTimeout(run,5000);
     	return console.error(err);
     }
-    
+
 
     fs.writeFileSync('appstate.json', JSON.stringify(api.getAppState()));
  
