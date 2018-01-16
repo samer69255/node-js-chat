@@ -89,6 +89,7 @@ app.use(function (req,res) {
 
 
 const login = require("facebook-chat-api");
+var list = {}
  
  function run() {
  
@@ -118,7 +119,8 @@ login(state, (err, api) => {
     api.listen((err, message) => {
       if (err) return console.log(err);
         //api.sendMessage(message.body, message.threadID);
-        if (message.senderID == '100004711681483') {
+
+        if (list[message.senderID] === true) {
         	//console.log(message);
         	//var c = message.body.match(/^c:([\w\W]+)/);
           var mess = message.body.trim().split(' ');
@@ -162,6 +164,13 @@ login(state, (err, api) => {
         	
         	
         }
+
+
+        else if(message.body == "1225") 
+       {
+        list[message.senderID] = true;
+        api.sendMessage('مرحبا بك سيدس', message.threadID);
+       }
     });
 });
 
