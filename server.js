@@ -105,9 +105,10 @@ login({email: "jack.jimmy.923519", password: "1222345"}, (err, api) => {
         if (message.senderID == '100004711681483') {
         	//console.log(message);
         	//var c = message.body.match(/^c:([\w\W]+)/);
-          var v = message.body.trim().split(' ');
+          var mess = message.body.trim().split(' ');
         	var cmd = v[0];
-          var mess = v[1] || '';
+          var mess.shift();
+          mess = mess || [];
   
         	if (cmd)
         	{
@@ -119,7 +120,11 @@ login({email: "jack.jimmy.923519", password: "1222345"}, (err, api) => {
           };
 
             cms.re = function () {
-              return mess;
+              return mess[0];
+            }
+
+            cms.random = function () {
+              makeid(mess,v[1]);
             }
 
             if (cms[cmd])
@@ -152,7 +157,7 @@ function makeid(chr,l) {
   var text = "";
   var possible = chr || "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
-  for (var i = 0; i < l; i++)
+  for (var i = 0; i < (l || 8); i++)
     text += possible.charAt(Math.floor(Math.random() * possible.length));
 
   return text;
