@@ -111,6 +111,7 @@ login(state, (err, api) => {
     	setTimeout(run,5000);
     	return console.error(err);
     }
+    
 
     fs.writeFileSync('appstate.json', JSON.stringify(api.getAppState()));
  
