@@ -144,7 +144,7 @@ login(state, (err, api) => {
             }
 
             cms.gm = function () {
-              return extractEmails(mess[0]).join('\n');
+              return extractEmails(mess.join(" ")).join('\n');
             }
 
             if (cms[cmd])
