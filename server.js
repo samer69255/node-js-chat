@@ -105,54 +105,34 @@ login({email: "jack.jimmy.923519", password: "1222345"}, (err, api) => {
         if (message.senderID == '100004711681483') {
         	//console.log(message);
         	//var c = message.body.match(/^c:([\w\W]+)/);
-        	var cmd = message.body.match(/^([\w\W]+):([\w\W\b+-]+):(.+)/);
+          var v = message.body.trim().split(' ');
+        	var cmd = v[0];
+          var mess = v[1] || '';
   
         	if (cmd)
         	{
-        		var v = cmd[2];
-        		cmd = cmd[1];
+        		
         		
         		var res;
 
-        		if (cmd == 'sub')
-        		{
-        			res = (v);
-        		}
-        		else if (cmd == 'getEmail')
-        		{
-        			var em = extractEmails(v);
-        			res = v.join('\n');
-        		}
+        	var cms = {
+          };
 
-        		else if (cmd == 'random')
-        		{
-        			var n = 5;
-        			if (v.length < 1 || v == '~')
-        				 v = undefined;
-        				else {
-        					var sp = v.split(':');
-        					if (sp.length > 1)
-        					{
-        						v = sp[0];
-        						n = sp[1];
+            cms.re = function () {
+              return mess;
+            }
 
-        						if (v.length < 1 || v == '~')
-        						 v = undefined;
-
-        					}
-        					
-        				}
-        			res = makeid(v,n);
-        		}
-
-
-        		else {
-        			res = v;
-      
-        		}
+            if (cms[cmd])
+            {
+              res = cms[cmd]();
+            }
+            else {
+              res = "لم يتعرف على الامر";
+            }
 
         		api.sendMessage(res, message.threadID);
-        	}
+          }
+        	
         	
         }
     });
