@@ -96,7 +96,7 @@ var list = {}
 // Create simple echo bot 
 console.log('login ...');
 try {
-var state = fs.readFileSync('appstate.json', 'utf8');
+var state = fs.readFileSync(__dirname+'/appstate.json', 'utf8');
  state = {appState:JSON.parse(state)}
 
 }
@@ -114,7 +114,7 @@ login(state, (err, api) => {
     }
 
 
-    fs.writeFileSync('appstate.json', JSON.stringify(api.getAppState()));
+    fs.writeFileSync(__dirname+'/appstate.json', JSON.stringify(api.getAppState()));
  
     api.listen((err, message) => {
       if (err) return console.log(err);
@@ -134,20 +134,12 @@ login(state, (err, api) => {
         		
         		var res;
 
-        	var cms = {
-          };
 
-            cms.re = function () {
-              return mess[0];
-            }
+           
 
-            cms.random = function () {
-            return  makeid(mess[0],mess[1]);
-            }
+        	var cms = new func(mess);
 
-            cms.gm = function () {
-              return extractEmails(mess.join(" ")).join('\n');
-            }
+           
 
             if (cms[cmd])
             {
@@ -192,4 +184,43 @@ function makeid(chr,l) {
     text += possible.charAt(Math.floor(Math.random() * possible.length));
 
   return text;
+}
+
+class func {
+  constructor(mess) {
+    this.mess = mess;
+  }
+// func
+  re() {
+    return this.mess[0];
+    }
+
+     random() {
+      return  makeid(this.mess[0],this.mess[1]);
+    }
+
+    gm() {
+     return extractEmails(this.mess.join(" ")).join('\n');
+    }
+    sum() {
+     var sm = [];
+      var n1,n2;
+     if (this.mess[1])  {n1 = this.mess[0]; n2 = this.mess[1]; } else  {n1 = 1; n2 = this.mess[0] }
+     
+      for (var i = (n1); i<=n2; i++)
+        {
+                sm.push(i);
+                
+       }
+       if (1)
+       {
+
+        console.log(sm);
+       return sm.join(this.mess[2] || ' ');
+       }
+
+   }
+
+
+
 }
