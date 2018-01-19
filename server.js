@@ -196,7 +196,17 @@ class func {
     }
 
      random() {
-      return  makeid(this.mess[0],this.mess[1]);
+      var ch = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+      var c = this.mess[0], l = this.mess[1];
+      var r = c.match(/(^\[.+?\]$)/);
+      if (r)
+      {
+        r = r[1];
+        console.log(r);
+        c = ch.match( (new RegExp(r,'g') || [])  ).join('');
+        console.log(c);
+      }
+      return  makeid(c,l);
     }
 
     gm() {
